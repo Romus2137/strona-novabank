@@ -1,0 +1,748 @@
+/*
+  Hierarchical org chart for Kadra NovaBank
+  Modern, visually prominent team cards with hover effects and responsive design
+*/
+
+.team-tree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 60px 0 0 0;
+  width: 100%;
+  position: relative;
+}
+
+.tree-level {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 48px;
+  margin-bottom: 32px;
+  width: 100%;
+  position: relative;
+}
+
+/* Spread levels horizontally and center them */
+.tree-level.ceo-level {
+  justify-content: center;
+  gap: 0;
+  width: 100%;
+}
+.tree-level.directors-level {
+  justify-content: space-around;
+  gap: 60px;
+  width: 80%;
+  margin: 0 auto 32px auto;
+}
+.tree-level.managers-level {
+  justify-content: space-between;
+  gap: 36px;
+  width: 92%;
+  margin: 0 auto 32px auto;
+}
+.tree-level.employees-level {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 36px 36px;
+  width: 100%;
+  margin: 0 auto 32px auto;
+  row-gap: 36px;
+  column-gap: 36px;
+  max-width: 1400px;
+}
+
+/* Card size by status */
+.tree-level.ceo-level .team-card {
+  min-width: 340px;
+  max-width: 400px;
+  padding: 48px 36px 36px 36px;
+  font-size: 1.15em;
+}
+.tree-level.directors-level .team-card {
+  min-width: 260px;
+  max-width: 300px;
+  padding: 36px 24px 28px 24px;
+  font-size: 1.08em;
+}
+.tree-level.managers-level .team-card {
+  min-width: 220px;
+  max-width: 260px;
+  padding: 28px 16px 20px 16px;
+  font-size: 1em;
+}
+.tree-level.employees-level .team-card {
+  flex: 1 1 180px;
+  min-width: 180px;
+  max-width: 210px;
+  padding: 18px 8px 12px 8px;
+  font-size: 0.97em;
+}
+
+/* --- ORG CHART TREE CONNECTORS --- */
+
+/* Horizontal connectors between cards in each row (except CEO) */
+.tree-level:not(.ceo-level) {
+  position: relative;
+}
+.tree-level:not(.ceo-level)::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 0;
+  border-top: 3px solid #b6c6e3;
+  z-index: 0;
+}
+.tree-level:not(.ceo-level) .team-card {
+  position: relative;
+  z-index: 1;
+  background-clip: padding-box;
+}
+
+/* Vertical connectors from above (except CEO) */
+.tree-connector {
+  width: 100%;
+  height: 32px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: none;
+  border: none;
+}
+.tree-connector::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 100%;
+  border-left: 3px solid #b6c6e3;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+.tree-connector::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 18px;
+  background: #b6c6e3;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 8px 0 rgba(60,100,180,0.10);
+  z-index: 1;
+}
+
+/* Remove horizontal line if only one card in row (CEO) */
+.tree-level.ceo-level::before {
+  display: none;
+}
+
+/* --- END ORG CHART TREE CONNECTORS --- */
+
+.team-card {
+  background: linear-gradient(135deg, #f8fbff 60%, #e3eefe 100%);
+  border-radius: 28px;
+  box-shadow: 0 8px 36px 0 rgba(60,100,180,0.13), 0 2px 8px 0 rgba(0,0,0,0.10);
+  padding: 38px 28px 28px 28px;
+  min-width: 270px;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.18s cubic-bezier(.4,2,.6,1), box-shadow 0.18s;
+  position: relative;
+  z-index: 1;
+  opacity: 1;
+  border: 2.5px solid #dbeafe;
+}
+
+.team-card:hover {
+  transform: translateY(-12px) scale(1.06);
+  box-shadow: 0 16px 48px 0 rgba(60,100,180,0.18), 0 4px 16px 0 rgba(0,0,0,0.13);
+  border-color: #60a5fa;
+}
+
+.team-photo {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 18px;
+  border: 4px solid #e0e7ef;
+  box-shadow: 0 4px 16px 0 rgba(60,100,180,0.10);
+  background: #fff;
+}
+
+/* --- PROFILE PHOTO: RECTANGULAR, EXTENDING TO THE RIGHT --- */
+.team-photo-rect {
+  width: 120px;
+  height: 72px;
+  border-radius: 36px 36px 36px 36px / 50% 50% 50% 50%;
+  object-fit: cover;
+  margin-bottom: 14px;
+  border: 4px solid #e0e7ef;
+  box-shadow: 0 4px 16px 0 rgba(60,100,180,0.10);
+  background: #fff;
+  display: block;
+}
+
+/* For larger (center) cards */
+.network-center .team-photo-rect {
+  width: 180px;
+  height: 90px;
+  border-radius: 48px 48px 48px 48px / 50% 50% 50% 50%;
+  margin-bottom: 18px;
+}
+
+/* Make network team cards and photos bigger in Kadra section */
+.network-center .team-card,
+.network-ring .team-card {
+  min-width: 260px;
+  max-width: 340px;
+  min-height: 220px;
+  max-height: 320px;
+  font-size: 1.18em;
+  padding: 48px 24px 32px 24px;
+}
+.network-center .team-photo-rect {
+  width: 260px;
+  height: 130px;
+  border-radius: 64px 64px 64px 64px / 50% 50% 50% 50%;
+  margin-bottom: 22px;
+}
+.network-ring .team-photo-rect {
+  width: 180px;
+  height: 100px;
+  border-radius: 48px 48px 48px 48px / 50% 50% 50% 50%;
+  margin-bottom: 18px;
+}
+
+.team-role {
+  color: #2563eb;
+  font-weight: 700;
+  font-size: 1.18em;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.team-card h3 {
+  font-size: 1.35em;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #1e293b;
+}
+
+.team-card p {
+  font-size: 1.08em;
+  color: #334155;
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+
+/* Description styling */
+.team-desc {
+  font-size: 1.08em;
+  color: #334155;
+  margin-top: 6px;
+  margin-bottom: 0.5em;
+  text-align: center;
+  line-height: 1.4;
+  min-height: 2.8em;
+}
+
+/* Hierarchy accent: CEO, Directors, Managers, Employees */
+.tree-level:first-child .team-card {
+  background: linear-gradient(135deg, #e0e7ff 60%, #c7d2fe 100%);
+  border-color: #6366f1;
+  box-shadow: 0 12px 48px 0 rgba(99,102,241,0.18);
+}
+.tree-level:nth-child(3) .team-card {
+  background: linear-gradient(135deg, #f0fdf4 60%, #bbf7d0 100%);
+  border-color: #22c55e;
+}
+.tree-level:nth-child(5) .team-card {
+  background: linear-gradient(135deg, #fef9c3 60%, #fde68a 100%);
+  border-color: #eab308;
+}
+.tree-level:nth-child(7) .team-card {
+  background: linear-gradient(135deg, #f1f5f9 60%, #e2e8f0 100%);
+  border-color: #64748b;
+}
+
+/* CEO card even bigger and more distinct */
+.tree-level.ceo-level .team-card {
+  min-width: 340px;
+  max-width: 400px;
+  padding: 48px 36px 36px 36px;
+  background: linear-gradient(135deg, #e0e7ff 60%, #c7d2fe 100%);
+  border-color: #6366f1;
+  box-shadow: 0 16px 64px 0 rgba(99,102,241,0.22);
+}
+.tree-level.ceo-level .team-photo {
+  width: 140px;
+  height: 140px;
+  border-width: 5px;
+}
+
+/* Level labels */
+.tree-label {
+  text-align: center;
+  font-size: 1.15em;
+  font-weight: 700;
+  color: #64748b;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.kadra-heading {
+  font-size: 2.6em;
+  font-weight: 900;
+  color: #2563eb;
+  text-align: center;
+  margin-bottom: 0.2em;
+  letter-spacing: 1px;
+  position: relative;
+}
+.kadra-heading::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 5px;
+  background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
+  border-radius: 3px;
+  margin: 18px auto 0 auto;
+}
+
+/* --- NEW, EVEN MORE SPOTLESS AND BOLD KADRA NOVABANK HEADING --- */
+.kadra-heading-giant {
+  font-size: 5.2em;
+  font-weight: 1000;
+  background: linear-gradient(90deg, #1e3a8a 0%, #60a5fa 40%, #fbbf24 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+  margin-bottom: 0.1em;
+  letter-spacing: 2.5px;
+  text-shadow: 0 8px 32px #60a5fa55, 0 2px 0 #fff, 0 0px 24px #fbbf2440;
+  position: relative;
+  line-height: 1.05;
+  filter: drop-shadow(0 2px 0 #fff) drop-shadow(0 8px 32px #60a5fa55);
+}
+.kadra-heading-giant::after {
+  content: '';
+  display: block;
+  width: 180px;
+  height: 10px;
+  background: linear-gradient(90deg, #6366f1 0%, #60a5fa 60%, #fbbf24 100%);
+  border-radius: 6px;
+  margin: 32px auto 0 auto;
+  box-shadow: 0 4px 24px #60a5fa33;
+}
+
+/* --- NEW ORG CHART TOPOLOGY: CIRCLE/NETWORK --- */
+.team-network {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 60px;
+  position: relative;
+}
+.network-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+.network-ring {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+.network-spoke {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.network-connector {
+  width: 4px;
+  height: 60px;
+  background: linear-gradient(180deg, #60a5fa 0%, #fbbf24 100%);
+  margin-bottom: 0;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px #60a5fa33;
+}
+.network-label {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #64748b;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* Make network team cards more circular and distinct */
+.network-center .team-card,
+.network-ring .team-card {
+  border-radius: 50%;
+  min-width: 180px;
+  max-width: 220px;
+  min-height: 180px;
+  max-height: 220px;
+  padding: 32px 12px 24px 12px;
+  box-shadow: 0 8px 36px 0 rgba(60,100,180,0.18), 0 2px 8px 0 rgba(0,0,0,0.10);
+  background: linear-gradient(135deg, #f8fbff 60%, #e3eefe 100%);
+  border: 3px solid #dbeafe;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.18s cubic-bezier(.4,2,.6,1), box-shadow 0.18s;
+}
+.network-center .team-card {
+  min-width: 260px;
+  max-width: 320px;
+  min-height: 260px;
+  max-height: 320px;
+  font-size: 1.25em;
+  background: linear-gradient(135deg, #e0e7ff 60%, #c7d2fe 100%);
+  border: 4px solid #6366f1;
+  box-shadow: 0 16px 64px 0 rgba(99,102,241,0.22);
+}
+
+.network-ring .team-card:hover {
+  transform: scale(1.08) translateY(-8px);
+  box-shadow: 0 16px 48px 0 rgba(60,100,180,0.22), 0 4px 16px 0 rgba(0,0,0,0.13);
+  border-color: #60a5fa;
+}
+
+.team-info {
+  margin-top: 10px;
+  background: #f1f5fa;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 0.98em;
+  color: #334155;
+  box-shadow: 0 2px 8px 0 rgba(60,100,180,0.06);
+  width: 100%;
+  text-align: left;
+  line-height: 1.5;
+  word-break: break-word;
+}
+.network-center .team-info {
+  font-size: 1.08em;
+  padding: 14px 22px;
+}
+.team-info b {
+  color: #2563eb;
+  font-weight: 700;
+  margin-right: 4px;
+}
+@media (max-width: 900px) {
+  .team-info, .network-center .team-info {
+    font-size: 0.92em;
+    padding: 8px 8px;
+  }
+}
+@media (max-width: 1200px) {
+  .tree-level.directors-level,
+  .tree-level.managers-level,
+  .tree-level.employees-level {
+    width: 100%;
+    gap: 18px;
+  }
+}
+@media (max-width: 900px) {
+  .tree-level.ceo-level .team-card {
+    min-width: 220px;
+    max-width: 260px;
+    padding: 24px 10px 18px 10px;
+  }
+  .tree-level.directors-level .team-card {
+    min-width: 170px;
+    max-width: 200px;
+    padding: 18px 8px 12px 8px;
+  }
+  .tree-level.managers-level .team-card {
+    min-width: 140px;
+    max-width: 170px;
+    padding: 12px 4px 8px 4px;
+  }
+  .tree-level.employees-level .team-card {
+    min-width: 90px;
+    max-width: 120px;
+    padding: 8px 2px 6px 2px;
+  }
+  .kadra-heading-giant {
+    font-size: 2.8em;
+  }
+  .kadra-heading-giant::after {
+    width: 60px;
+    height: 4px;
+    margin: 14px auto 0 auto;
+  }
+  .network-center .team-card {
+    min-width: 160px;
+    max-width: 200px;
+    min-height: 160px;
+    max-height: 200px;
+    font-size: 1em;
+  }
+  .network-ring .team-card {
+    min-width: 100px;
+    max-width: 120px;
+    min-height: 100px;
+    max-height: 120px;
+    font-size: 0.9em;
+  }
+}
+@media (max-width: 700px) {
+  .tree-level {
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 18px;
+    width: 100%;
+  }
+  .network-ring {
+    gap: 18px;
+    margin-bottom: 18px;
+  }
+  .network-center .team-card {
+    min-width: 110px;
+    max-width: 130px;
+    min-height: 110px;
+    max-height: 130px;
+    font-size: 0.8em;
+  }
+}
+
+/* --- INFO SPOT NEXT TO PROFILE CARD --- */
+.team-profile-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  position: relative;
+  margin-bottom: 18px;
+}
+.team-card {
+  margin-right: 0;
+}
+.team-info-spot {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px 0 rgba(60,100,180,0.10);
+  padding: 18px 28px 18px 32px;
+  margin-left: 18px;
+  min-width: 210px;
+  max-width: 320px;
+  min-height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1.02em;
+  color: #334155;
+  border: 2px solid #e0e7ef;
+  position: relative;
+  z-index: 2;
+}
+.team-info-spot b {
+  color: #2563eb;
+  font-weight: 700;
+  margin-right: 4px;
+}
+.team-info-spot div {
+  color: #2563eb;
+}
+/* Connector line between card and info spot */
+.team-profile-row .info-connector {
+  position: absolute;
+  left: calc(100% - 18px);
+  top: 50%;
+  width: 32px;
+  height: 0;
+  border-top: 3px solid #60a5fa;
+  z-index: 1;
+  transform: translateY(-50%);
+}
+@media (max-width: 900px) {
+  .team-profile-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+  .team-info-spot {
+    margin-left: 0;
+    margin-top: 12px;
+    min-width: 160px;
+    max-width: 100%;
+    padding: 12px 12px 12px 18px;
+  }
+  .team-profile-row .info-connector {
+    display: none;
+  }
+}
+
+/* --- LEGAL INFO ANIMATION --- */
+.legal-info-animated {
+  margin-top: 36px;
+  background: #f8fafc;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px 0 rgba(60,100,180,0.08);
+  padding: 28px 24px 18px 24px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.legal-info-animated h3 {
+  color: #2563eb;
+  font-size: 1.35em;
+  font-weight: 800;
+  margin-bottom: 18px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+.legal-offer-anim {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px 0 rgba(60,100,180,0.06);
+  padding: 16px 18px 12px 18px;
+  margin-bottom: 18px;
+  font-size: 1.05em;
+  color: #334155;
+  border-left: 5px solid #60a5fa;
+  opacity: 0;
+  animation: fadeInLegal 1.1s cubic-bezier(.4,2,.6,1) forwards;
+}
+.legal-offer-anim b {
+  color: #2563eb;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+}
+@keyframes fadeInLegal {
+  to { opacity: 1; transform: none; }
+}
+@media (max-width: 700px) {
+  .legal-info-animated {
+    padding: 12px 4px 8px 4px;
+  }
+  .legal-offer-anim {
+    font-size: 0.97em;
+    padding: 10px 6px 8px 10px;
+  }
+}
+
+/* Animation classes for org chart */
+.fade-in,
+.fade-in-delay,
+.slide-in-up,
+.slide-in-left,
+.slide-in-right {
+  opacity: 0;
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.fade-in-delay {
+  animation: fadeIn 1.2s 0.3s ease forwards;
+}
+
+.slide-in-up {
+  transform: translateY(40px);
+  animation: slideInUp 0.8s cubic-bezier(.4,2,.6,1) forwards;
+}
+
+.slide-in-left {
+  transform: translateX(-40px);
+  animation: slideInLeft 0.8s cubic-bezier(.4,2,.6,1) forwards;
+}
+
+.slide-in-right {
+  transform: translateX(40px);
+  animation: slideInRight 0.8s cubic-bezier(.4,2,.6,1) forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes slideInLeft {
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes slideInRight {
+  to { opacity: 1; transform: none; }
+}
+
+.logo-fox {
+  display: none !important;
+}
+
+/* Simple 2D fox SVG icon for logo */
+.logo-fox-simple {
+  width: 38px;
+  height: 38px;
+  margin-left: 12px;
+  margin-top: 2px;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px #2d9cdb22;
+  border: 2px solid #e0e7ef;
+}
+@media (max-width: 700px) {
+  .logo-fox-simple {
+    width: 28px;
+    height: 28px;
+    margin-left: 6px;
+  }
+}
+
+/* Hide old fox logo styles if present */
+.logo-fox,
+.logo-fox-simple {
+  display: none !important;
+}
+
+/* Style for the new fox image logo */
+.logo-fox-img {
+  width: 38px;
+  height: 38px;
+  margin-left: 12px;
+  vertical-align: middle;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 8px #2d9cdb22;
+  border: 2px solid #e0e7ef;
+  object-fit: cover;
+}
+@media (max-width: 700px) {
+  .logo-fox-img {
+    width: 28px;
+    height: 28px;
+    margin-left: 6px;
+  }
+}

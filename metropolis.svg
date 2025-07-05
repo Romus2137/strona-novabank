@@ -1,0 +1,97 @@
+<svg id="metropolis-svg" viewBox="0 0 1920 1080" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e0eafc"/>
+      <stop offset="100%" stop-color="#b0c4de"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#eaf6fb"/>
+      <stop offset="100%" stop-color="#b0c4de"/>
+    </linearGradient>
+    <linearGradient id="window" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff"/>
+      <stop offset="100%" stop-color="#b0c4de"/>
+    </linearGradient>
+    <radialGradient id="light" cx="0.5" cy="0.2" r="0.7">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#e0eafc" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- Sky background -->
+  <rect x="0" y="0" width="1920" height="1080" fill="url(#sky)"/>
+  <!-- City blocks from top to bottom -->
+  <!-- Back skyline -->
+  <g opacity="0.5">
+    <rect x="0" y="120" width="1920" height="120" fill="#b0c4de"/>
+    <rect x="100" y="80" width="180" height="160" fill="#b0c4de"/>
+    <rect x="400" y="100" width="120" height="140" fill="#b0c4de"/>
+    <rect x="700" y="60" width="180" height="180" fill="#b0c4de"/>
+    <rect x="1200" y="110" width="150" height="130" fill="#b0c4de"/>
+    <rect x="1600" y="90" width="200" height="150" fill="#b0c4de"/>
+    <!-- Extra back buildings -->
+    <rect x="250" y="60" width="60" height="180" fill="#b0c4de"/>
+    <rect x="600" y="80" width="50" height="160" fill="#b0c4de"/>
+    <rect x="950" y="90" width="90" height="150" fill="#b0c4de"/>
+    <rect x="1100" y="70" width="60" height="170" fill="#b0c4de"/>
+    <rect x="1400" y="100" width="70" height="140" fill="#b0c4de"/>
+    <rect x="1800" y="60" width="80" height="180" fill="#b0c4de"/>
+  </g>
+  <!-- Mid skyline -->
+  <g opacity="0.7">
+    <rect x="50" y="220" width="180" height="320" fill="#7b8fa3"/>
+    <rect x="300" y="200" width="200" height="340" fill="#7b8fa3"/>
+    <rect x="600" y="250" width="140" height="290" fill="#7b8fa3"/>
+    <rect x="900" y="180" width="220" height="360" fill="#7b8fa3"/>
+    <rect x="1500" y="210" width="180" height="330" fill="#7b8fa3"/>
+    <rect x="1750" y="230" width="120" height="310" fill="#7b8fa3"/>
+    <!-- Extra mid buildings -->
+    <rect x="180" y="300" width="60" height="240" fill="#7b8fa3"/>
+    <rect x="520" y="320" width="80" height="220" fill="#7b8fa3"/>
+    <rect x="800" y="260" width="60" height="280" fill="#7b8fa3"/>
+    <rect x="1150" y="250" width="70" height="290" fill="#7b8fa3"/>
+    <rect x="1350" y="300" width="60" height="240" fill="#7b8fa3"/>
+    <rect x="1650" y="320" width="70" height="220" fill="#7b8fa3"/>
+  </g>
+  <!-- Front skyline -->
+  <g>
+    <rect x="0" y="540" width="120" height="540" fill="#3a4a5d"/>
+    <rect x="200" y="400" width="240" height="680" fill="url(#glass)"/>
+    <rect x="500" y="600" width="180" height="480" fill="#3a4a5d"/>
+    <rect x="800" y="420" width="280" height="660" fill="url(#glass)"/>
+    <rect x="1300" y="500" width="220" height="580" fill="#3a4a5d"/>
+    <rect x="1700" y="380" width="220" height="700" fill="url(#glass)"/>
+    <!-- Domes -->
+    <ellipse cx="320" cy="400" rx="120" ry="36" fill="#b0c4de"/>
+    <ellipse cx="940" cy="420" rx="140" ry="40" fill="#b0c4de"/>
+    <!-- Windows -->
+    <rect x="260" y="500" width="40" height="40" fill="url(#window)"/>
+    <rect x="260" y="600" width="40" height="40" fill="url(#window)"/>
+    <rect x="260" y="700" width="40" height="40" fill="url(#window)"/>
+    <rect x="900" y="600" width="40" height="40" fill="url(#window)"/>
+    <rect x="900" y="700" width="40" height="40" fill="url(#window)"/>
+    <rect x="900" y="800" width="40" height="40" fill="url(#window)"/>
+    <!-- Extra front buildings -->
+    <rect x="150" y="700" width="60" height="380" fill="#3a4a5d"/>
+    <rect x="420" y="800" width="60" height="280" fill="#3a4a5d"/>
+    <rect x="1100" y="700" width="60" height="380" fill="#3a4a5d"/>
+    <rect x="1600" y="800" width="60" height="280" fill="#3a4a5d"/>
+    <!-- Reflections -->
+    <rect x="210" y="400" width="20" height="600" fill="url(#light)" opacity="0.3"/>
+    <rect x="810" y="420" width="24" height="600" fill="url(#light)" opacity="0.3"/>
+    <!-- Rooftop details -->
+    <rect x="350" y="370" width="16" height="36" fill="#7b8fa3"/>
+    <rect x="940" y="390" width="20" height="40" fill="#7b8fa3"/>
+    <circle cx="940" cy="390" r="10" fill="#fff" opacity="0.7"/>
+    <!-- Rooftop antennas -->
+    <rect x="1450" y="480" width="8" height="40" fill="#b0c4de"/>
+    <circle cx="1454" cy="480" r="8" fill="#fff" opacity="0.7"/>
+  </g>
+  <!-- Street level -->
+  <g opacity="0.5">
+    <rect x="0" y="1000" width="1920" height="80" fill="#b0c4de"/>
+    <ellipse cx="350" cy="1040" rx="36" ry="20" fill="#7b8fa3"/>
+    <ellipse cx="370" cy="1060" rx="24" ry="14" fill="#b0c4de"/>
+    <ellipse cx="1200" cy="1050" rx="40" ry="24" fill="#7b8fa3"/>
+    <ellipse cx="1225" cy="1070" rx="28" ry="16" fill="#b0c4de"/>
+  </g>
+</svg>
